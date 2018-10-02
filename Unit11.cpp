@@ -1,0 +1,40 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit11.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm11 *Form11;
+//---------------------------------------------------------------------------
+__fastcall TForm11::TForm11(TComponent* Owner)
+    : TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm11::FormCreate(float results[][4])
+{
+
+  StringGrid1->Cells[0][0] = "Bozinovic - Shrihari ( % )";
+  StringGrid1->Cells[1][0] = "Vinciarelli - Luettin ( % )";
+
+        float v_avg ,b_avg;
+        v_avg = b_avg = 0;
+        AnsiString a = "Average: ";
+
+        for(int i=0; i<5; i++){
+                if (i == 4){
+                        StringGrid1->Cells[0][5] = a+b_avg/4;
+                        StringGrid1->Cells[1][5] = a+v_avg/4;
+                }else{
+                        StringGrid1->Cells[0][i+1] = results[0][i] ;
+                        StringGrid1->Cells[1][i+1] = results[1][i];
+                        v_avg += results[1][i];
+                        b_avg += results[0][i];
+                }
+        }
+
+                        
+}
